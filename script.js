@@ -240,7 +240,6 @@ function triggerSpecial(id){
     case 'page-5':  typeLine(document.querySelector('.type-line:not(.delay)'), 'Su kare che?', () => {
                        setTimeout(() => typeLine(document.querySelector('.type-line.delay'), 'Su nathi :)'), 500);
                      }); break;
-    case 'page-24': document.getElementById('page-24').classList.add('separated'); break;
     case 'page-ending': setTimeout(() => document.getElementById('maliye-text').classList.add('show'), 3000); break;
   }
 }
