@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Before We Became Memories</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Caveat:wght@500;700&family=Kalam:wght@400;700&family=Courier+Prime:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- custom cursor -->
+<div class="cursor" id="cursor">🌻</div>
+
+<!-- ambient audio -->
+<audio id="ambient-audio" loop preload="none">
+  <source src="assets/audio/piano.mp3" type="audio/mpeg">
+</audio>
+<audio id="page-turn-sound" preload="none">
+  <source src="assets/audio/page-turn.mp3" type="audio/mpeg">
+</audio>
+
+<!-- ============ LOADER / INTRO ============ -->
+<div id="loader">
+  <div class="paper-fade"></div>
+  <div class="loader-content">
+    <h1 id="typed-title" class="typed-title"></h1>
+    <p id="loader-subtitle" class="loader-subtitle">The story of two people who never planned to become each other's favourite habit.</p>
+    <div id="sunflower-stage" class="sunflower-stage">
+      <svg id="sunflower-svg" class="sunflower-svg" viewBox="0 0 220 220">
+        <g id="petal-group"></g>
+        <circle cx="110" cy="110" r="30" class="sunflower-center"></circle>
+        <circle cx="110" cy="110" r="30" class="sunflower-center-texture"></circle>
+      </svg>
+      <span class="chick-doodle">🐣</span>
+    </div>
+    <button id="begin-btn" class="begin-btn kitkat-btn" aria-label="Break to begin">
+      <span class="kitkat-foil-peel"></span>
+      <span class="kitkat-seg"></span><span class="kitkat-seg"></span><span class="kitkat-seg"></span><span class="kitkat-seg"></span>
+      <span class="kitkat-label">Break to Begin</span>
+    </button>
+  </div>
+</div>
+
+<!-- ============ TOP BAR (visible once book opens) ============ -->
+<div id="topbar" class="topbar">
+  <div class="progress-track"><div id="progress-bar" class="progress-bar"></div></div>
+  <div class="topbar-controls">
+    <button id="chapter-nav-btn" class="icon-btn" title="Chapters">☰</button>
+    <button id="bookmark-btn" class="icon-btn" title="Bookmark this page">🔖</button>
+    <button id="sound-toggle-btn" class="icon-btn" title="Page turn sound">📄</button>
+    <button id="music-toggle-btn" class="icon-btn" title="Music">🔇</button>
+    <button id="dark-toggle-btn" class="icon-btn" title="Dark mode">🌙</button>
+    <button id="share-btn" class="icon-btn" title="Share this memory">↗</button>
+  </div>
+</div>
+
+<!-- chapter dots -->
+<nav id="chapter-dots" class="chapter-dots"></nav>
+
+<!-- toast -->
+<div id="toast" class="toast"></div>
+
+<!-- ============ BOOK ============ -->
+<main id="book" class="book">
+
+  <!-- COVER -->
+  <section class="page cover-page" data-chapter="Cover" id="page-cover">
+    <div class="cover-inner">
+      <span class="eyebrow">a memory, preserved</span>
+      <h1 class="cover-title">Before We<br>Became Memories</h1>
+      <p class="cover-sub">The story of two people who never planned to<br>become each other's favourite habit.</p>
+      <div class="cover-emojis">🐣 🌻</div>
+      <div class="scroll-hint">scroll to open the book ↓</div>
+    </div>
+  </section>
+
+  <!-- OPENING LETTER -->
+  <section class="page letter-page" data-chapter="Before You Read" id="page-letter">
+    <div class="letter-card torn">
+      <div class="tape tape-left"></div><div class="tape tape-right"></div>
+      <h2 class="hand-heading">Hi Honey. ❤️</h2>
+      <p class="letter-text">If you're reading this, you've probably smiled already — because you know this is exactly something I'd do.</p>
+      <p class="letter-text">This isn't a goodbye letter. It isn't my way of changing your mind. And it definitely isn't meant to make you cry.</p>
+      <p class="letter-text">This is simply our little world, pressed between pages before time quietly changes the details.</p>
+      <p class="letter-signoff">So... <span class="hand">Su kare che?</span></p>
+    </div>
+  </section>
+
+  <!-- MOMENT 01 — Wrong Delivery -->
+  <section class="page moment-page split-page" data-chapter="01 · The Wrong Delivery" id="page-1">
+    <div class="moment-visual">
+      <div class="polaroid rotate-a kitkat-wrap" tabindex="0">
+        <div class="polaroid-photo placeholder">Insert Photo Here</div>
+        <div class="polaroid-caption">the infamous order</div>
+        <div class="kitkat-wrapper-flap"></div>
+      </div>
+    </div>
+    <div class="moment-text">
+      <span class="chapter-num">01</span>
+      <h2 class="moment-title">The Wrong Delivery</h2>
+      <p class="moment-body">I had jokingly asked you to send me KitKats, never expecting you'd actually do it. That one small gesture made me feel cared for in a way I didn't expect.</p>
+      <p class="moment-body">The chocolates never reached me though. Instead, the parcel turned into condoms and lotion, and half the office had already opened it before I even got there. I still laugh thinking about how awkward it was trying to explain that it was actually from you.</p>
+      <p class="moment-body">Looking back now, I honestly couldn't have asked for a better beginning. It was messy, embarrassing, and perfectly us.</p>
+      <p class="moment-note hand">hover the polaroid →</p>
+    </div>
+  </section>
+
+  <!-- MOMENT 02 — I'm In -->
+  <section class="page moment-page center-page" data-chapter="02 · I'm In" id="page-2">
+    <span class="chapter-num">02</span>
+    <h2 class="moment-title center">"I'm In."</h2>
+    <div class="phone-bubble-wrap">
+      <div class="chat-bubble sent" data-type="Will you be my bestie?"></div>
+      <div class="chat-bubble received" data-type="I'm in."></div>
+    </div>
+    <div class="moment-copy">
+      <p class="moment-body">Such a small conversation. Just three words. Yet somehow, those three words quietly changed my everyday life.</p>
+      <p class="moment-body">If someone had told me that one reply would become one of my favourite memories, I would've laughed. Today, it still makes me smile.</p>
+    </div>
+  </section>
+
+  <!-- MOMENT 03 — Instagram DMs -->
+  <section class="page moment-page split-page reverse" data-chapter="03 · Instagram Wasn't Enough" id="page-3">
+    <div class="moment-visual">
+      <div class="phone-mockup">
+        <div class="phone-notch"></div>
+        <div class="phone-header">Active now</div>
+        <div class="phone-messages" id="dm-messages"></div>
+      </div>
+    </div>
+    <div class="moment-text">
+      <span class="chapter-num">03</span>
+      <h2 class="moment-title">Instagram Wasn't Enough</h2>
+      <p class="moment-body">It started with Instagram DMs, random replies, and silly conversations. Somehow, those messages slowly turned into hours of talking without us even realizing how late it had become.</p>
+      <p class="moment-body">I don't remember every conversation we had. I just remember never wanting them to end.</p>
+      <p class="moment-body">Somewhere along the way, talking to you stopped being part of my day and became the best part of it.</p>
+    </div>
+  </section>
+
+  <!-- MOMENT 04 — Favourite Notification -->
+  <section class="page moment-page center-page" data-chapter="04 · Favourite Notification" id="page-4">
+    <span class="chapter-num">04</span>
+    <h2 class="moment-title center">Favourite Notification</h2>
+    <div class="notif-stage">
+      <div class="notif-banner">
+        <div class="notif-icon">💬</div>
+        <div class="notif-text"><b>her</b><span>every buzz, I hoped it was you</span></div>
+      </div>
+    </div>
+    <div class="moment-copy">
+      <p class="moment-body">There was a time when checking my phone was just a habit. Then you came along, and it quietly became checking if you had messaged me.</p>
+      <p class="moment-body">Every notification made me hope it was you. Every time your name appeared, my mood somehow got better.</p>
+      <p class="moment-body">I never planned for someone to become my favourite notification, but you did.</p>
+    </div>
+  </section>
+
+  <!-- MOMENT 05 — Su Kare Che -->
+  <section class="page moment-page minimal-page" data-chapter="05 · Su Kare Che?" id="page-5">
+    <span class="chapter-num">05</span>
+    <h2 class="moment-title center">Su Kare Che?</h2>
+    <p class="type-line" data-text="Su kare che?"></p>
+    <p class="type-line delay hand" data-text="Su nathi :)"></p>
+    <div class="moment-copy center-copy">
+      <p class="moment-body">I don't know why, but I loved the way you always said it. You never said "Kai nathi." It was always "Su nathi," and somehow it became one of those tiny things I looked forward to hearing every day.</p>
+      <p class="moment-body">Funny how the smallest habits become the biggest memories.</p>
+    </div>
+  </section>
+
+  <!-- INSERT — Things I'll Never Forget About You #1 -->
+  <section class="page moment-page center-page insert-page" data-chapter="Things I'll Never Forget — I" id="insert-1">
+    <h2 class="moment-title center">Things I'll Never Forget</h2>
+    <p class="moment-title center small-sub">About You</p>
+    <div class="forget-list">
+      <p>The way you said "Ho ka."</p>
+      <p>The way you laughed holding your stomach.</p>
+      <p>How your cheeks turned pink when you blushed.</p>
+      <p>Your spinning chair.</p>
+      <p>The excitement in your voice when we planned Mumbai.</p>
+      <p>The way you tried speaking Gujarati.</p>
+      <p>Your love for mangoes and salads.</p>
+      <p>The little baby version of you that only I got to know.</p>
+    </div>
+  </section>
+
+  <!-- MOMENT 06 — Baby Nobody Else Saw -->
+  <section class="page moment-page split-page" data-chapter="06 · The Baby Nobody Else Saw" id="page-6">
+    <div class="moment-visual">
+      <div class="spin-chair">
+        <div class="chair-seat placeholder">Insert Photo Here</div>
+      </div>
+    </div>
+    <div class="moment-text">
+      <span class="chapter-num">06</span>
+      <h2 class="moment-title">The Baby Nobody Else Saw</h2>
+      <p class="moment-body">Your blush. Your stomach-holding laugh. Your spinning chair.</p>
+      <p class="moment-body">The little version of you that only I got to meet.</p>
+      <p class="moment-body">You never showed that side to anyone else, not even people who'd known you for years. On calls you'd turn the camera away when you blushed, like I wouldn't notice anyway.</p>
+      <p class="moment-body">I always noticed. I think I loved noticing.</p>
+    </div>
+  </section>
+
+  <!-- MOMENT 07 — One Joke That Became A Flight (Mumbai, map + plane) -->
+  <section class="page moment-page map-page" data-chapter="07 · One Joke That Became A Flight" id="page-7">
+    <span class="chapter-num">07</span>
+    <h2 class="moment-title center">One Joke That Became A Flight</h2>
+    <svg class="map-svg" viewBox="0 0 800 300" id="map-svg">
+      <path id="flight-path" d="M 100 220 Q 400 40 700 150" fill="none" stroke="#c9b892" stroke-width="2" stroke-dasharray="6 8"/>
+      <circle cx="100" cy="220" r="6" fill="#2b241c"/>
+      <text x="70" y="250" class="map-label">Ahmedabad</text>
+      <circle cx="700" cy="150" r="6" fill="#2b241c"/>
+      <text x="655" y="130" class="map-label">Mumbai</text>
+      <text id="plane-icon" x="100" y="220" class="plane-emoji">✈️</text>
+    </svg>
+    <div class="moment-copy center-copy">
+      <p class="moment-body">"Aaja Mumbai."</p>
+      <p class="moment-body">I don't think either of us expected me to actually book the ticket.</p>
+      <p class="moment-body">You said it like a joke, half expecting me to laugh it off.</p>
+      <p class="moment-body">Instead I checked flights that same night, and by the next week I was already packing.</p>
+    </div>
+  </section>
+
+  <!-- MOMENT 08 — Versova -->
+  <section class="page moment-page waves-page" data-chapter="08 · Versova At Midnight" id="page-8">
+    <div class="waves">
+      <div class="wave wave1"></div><div class="wave wave2"></div><div class="wave wave3"></div>
+      <div class="moon">🌙</div>
+    </div>
+    <span class="chapter-num light">08</span>
+    <h2 class="moment-title center light">Versova At Midnight</h2>
+    <div class="moment-copy center-copy">
+      <p class="moment-body light">Feet in the sand. Ocean. Silence. Us.</p>
+      <p class="moment-body light">We didn't talk about anything important. We didn't need to.</p>
+      <p class="moment-body light">Just walking beside you at midnight felt like enough of a plan.</p>
+    </div>
+  </section>
+
+  <!-- MOMENT 09 — Pizza -->
+  <section class="page moment-page center-page" data-chapter="09 · The ₹2,000 Pizza" id="page-9">
+    <span class="chapter-num">09</span>
+    <h2 class="moment-title center">The ₹2,000 Pizza</h2>
+    <div class="pizza-spin placeholder">Insert Photo Here</div>
+    <div class="moment-copy center-copy">
+      <p class="moment-body">Probably the worst pizza we'll ever eat. Still one of my favourite dinners.</p>
+      <p class="moment-body">We kept eating it anyway, complaining between every bite.</p>
+      <p class="moment-body">I don't remember what we talked about that night, only that I didn't want it to end.</p>
+    </div>
+  </section>
+
+  <!-- MOMENT 10 — Sahara Star -->
+  <section class="page moment-page stars-page" data-chapter="10 · Sahara Star" id="page-10">
+    <div class="starfield" id="starfield"></div>
+    <span class="chapter-num light">10</span>
+    <h2 class="moment-title center light">Sahara Star</h2>
+    <div class="moment-copy center-copy">
+      <p class="moment-body light breathing">Movie. Sleep. Holding you. Quiet happiness.</p>
+      <p class="moment-body light">I stayed awake longer than I should have, just watching you sleep.</p>
+      <p class="moment-body light">It's still one of the calmest nights I can remember.</p>
+    </div>
+  </section>
+
+  <!-- MOMENT 11 — Lost Earring -->
+  <section class="page moment-page center-page" data-chapter="11 · The Missing Earring" id="page-11">
+    <span class="chapter-num">11</span>
+    <h2 class="moment-title center">The Missing Earring</h2>
+    <div class="earring-stage">
+      <div class="earring" id="earring">💧</div>
+    </div>
+    <div class="moment-copy center-copy">
+      <p class="moment-body">You fell asleep wearing both. You woke up with one.</p>
+      <p class="moment-body">We searched everywhere and never found it.</p>
+      <p class="moment-body">Maybe it decided to stay where one of our favourite memories lived. Somewhere in that room, it's probably still there.</p>
+    </div>
+  </section>
+
+  <!-- MOMENT 12 — Our First Hug -->
+  <section class="page moment-page hug-page" data-chapter="12 · Our First Hug" id="page-12">
+    <div class="hug-blur"></div>
+    <span class="chapter-num">12</span>
+    <h2 class="moment-title center">Our First Hug</h2>
+    <div class="moment-copy center-copy">
+      <p class="moment-body">Outside Orchid. The moment attraction quietly became attachment.</p>
+      <p class="moment-body">Nothing dramatic happened, no music, no big buildup.</p>
+      <p class="moment-body">I just remember thinking, clearly, that this had already turned into something else.</p>
+    </div>
+    <div class="heartbeat">♡</div>
+  </section>
+
+  <!-- MOMENT 13 — Cold Hai Kya -->
+  <section class="page moment-page center-page" data-chapter="13 · Cold Hai Kya?" id="page-13">
+    <span class="chapter-num">13</span>
+    <h2 class="moment-title center">Cold Hai Kya?</h2>
+    <div class="note-fold">
+      <div class="note-inner">Cold hai kya?</div>
+    </div>
+    <div class="moment-copy center-copy">
+      <p class="moment-body">Our secret language.</p>
+      <p class="moment-body">It had nothing to do with weather. It meant, drop the small talk, let's actually talk.</p>
+      <p class="moment-body">Nobody else ever knew what it meant. That was always the point.</p>
+    </div>
+  </section>
+
+  <!-- MOMENT 14 — Camera -->
+  <section class="page moment-page camera-page" data-chapter="14 · Camera" id="page-14">
+    <span class="chapter-num">14</span>
+    <h2 class="moment-title center">Camera</h2>
+    <div class="camera-frame">
+      <div class="camera-scanline"></div>
+      <div class="camera-placeholder">Insert Photo Here</div>
+      <div class="camera-rec">● REC</div>
+    </div>
+    <div class="moment-copy center-copy">
+      <p class="moment-body">"I'm watching."</p>
+      <p class="moment-body">No. Just checking if my favourite person is okay.</p>
+      <p class="moment-body">I told myself it wasn't a big deal, just a quick glance between tasks.</p>
+      <p class="moment-body">It was never really about the camera. It was about you.</p>
+    </div>
+  </section>
+
+  <!-- MOMENT 15 — Morning Calls -->
+  <section class="page moment-page center-page" data-chapter="15 · Morning Started With You" id="page-15">
+    <span class="chapter-num">15</span>
+    <h2 class="moment-title center">Morning Started With You</h2>
+    <div class="call-ui">
+      <div class="call-avatar">☀️</div>
+      <div class="call-name">incoming call…</div>
+      <div class="call-sub">"Wake up."</div>
+    </div>
+    <div class="moment-copy center-copy">
+      <p class="moment-body">It became my favourite routine without me even noticing.</p>
+      <p class="moment-body">Some mornings you'd pick up half asleep and still try to talk.</p>
+      <p class="moment-body">I never minded waiting those extra few minutes for you to properly wake up.</p>
+    </div>
+  </section>
+
+  <!-- INSERT — Things I'll Never Forget About You #2 -->
+  <section class="page moment-page center-page insert-page" data-chapter="Things I'll Never Forget — II" id="insert-2">
+    <h2 class="moment-title center">Things I'll Never Forget</h2>
+    <p class="moment-title center small-sub">About You</p>
+    <div class="forget-list">
+      <p>The way you said "cold hai kya" before anything serious.</p>
+      <p>Falling asleep mid-sentence on our calls.</p>
+      <p>The morning you picked up half asleep and still talked to me.</p>
+      <p>Walking barefoot beside you at midnight.</p>
+      <p>How you never let bad pizza ruin a good night.</p>
+      <p>The earring we never found.</p>
+      <p>Checking the camera just to see you smile.</p>
+      <p>The version of you nobody else got to meet.</p>
+    </div>
+  </section>
+
+  <!-- MOMENT 16 — Goodnight -->
+  <section class="page moment-page center-page" data-chapter="16 · Goodnight" id="page-16">
+    <span class="chapter-num">16</span>
+    <h2 class="moment-title center">Goodnight</h2>
+    <div class="call-timer" id="call-timer">00:00:00</div>
+    <div class="moment-copy center-copy">
+      <p class="moment-body">Those calls where neither of us wanted to hang up.</p>
+      <p class="moment-body">We'd both say "okay bye" three or four times and still keep talking.</p>
+      <p class="moment-body">Somehow the goodnight always took longer than the actual conversation.</p>
+    </div>
+  </section>
+
+  <!-- MOMENT 17 — Ho Ka -->
+  <section class="page moment-page center-page" data-chapter="17 · Ho Ka" id="page-17">
+    <span class="chapter-num">17</span>
+    <h2 class="moment-title center">Ho Ka</h2>
+    <div class="bounce-bubble">"Ho ka."</div>
+    <div class="moment-copy center-copy">
+      <p class="moment-body">Marathi for "is it so," and my favourite thing to tease you about.</p>
+      <p class="moment-body">I still don't know whether I loved teasing you more, or hearing you laugh after it.</p>
+      <p class="moment-body">Either way, I never got tired of hearing you say it.</p>
+    </div>
+  </section>
+
+  <!-- MOMENT 18 — Healthy vs Junk -->
+  <section class="page moment-page duel-page" data-chapter="18 · Healthy vs Junk" id="page-18">
+    <div class="duel-row">
+      <div class="duel-item duel-left">🥗<span>your salads</span></div>
+      <div class="duel-vs">vs</div>
+      <div class="duel-item duel-right">🍔<span>my junk food</span></div>
+    </div>
+    <div class="moment-copy center-copy duel-copy">
+      <p class="moment-body">Salads. Mangoes. My junk food. Your lectures.</p>
+      <p class="moment-body">We never agreed on a single meal, not once.</p>
+      <p class="moment-body">Somehow it became one of the most consistent, most familiar arguments we had.</p>
+    </div>
+  </section>
+
+  <!-- MOMENT 19 — Cab, Not Auto (pink shirt) -->
+  <section class="page moment-page split-page" data-chapter="19 · Cab, Not Auto" id="page-19">
+    <div class="moment-visual">
+      <div class="shirt-swap"><div class="shirt shirt-pink">👕</div></div>
+    </div>
+    <div class="moment-text">
+      <span class="chapter-num">19</span>
+      <h2 class="moment-title">Cab, Not Auto</h2>
+      <p class="moment-body">"You should wear your pink shirt." "Bring flowers." "You can't come like this, take a cab."</p>
+      <p class="moment-body">You never realised you were teaching me how to show up for someone properly.</p>
+      <p class="moment-body">I still think of that pink shirt every time I get ready — and I miss your touch, your hands over it.</p>
+    </div>
+  </section>
+
+  <!-- MOMENT 20 — Sunflower -->
+  <section class="page moment-page sunflower-page" data-chapter="20 · The Sunflower" id="page-20">
+    <div class="petals" id="petals"></div>
+    <span class="chapter-num">20</span>
+    <h2 class="moment-title center">The Sunflower</h2>
+    <div class="moment-copy center-copy">
+      <p class="moment-body">🌻 A flower I never brought. A regret I'll always remember.</p>
+      <p class="moment-body">It was such a small thing to do, and I kept telling myself there'd be a next time.</p>
+      <p class="moment-body">I'll keep this in my checkbox until next time.</p>
+    </div>
+  </section>
+
+  <!-- MOMENT 21 — Anklet -->
+  <section class="page moment-page center-page" data-chapter="21 · The Anklet" id="page-21">
+    <span class="chapter-num">21</span>
+    <h2 class="moment-title center">The Anklet</h2>
+    <div class="anklet-stage"><div class="anklet">✨</div></div>
+    <div class="moment-copy center-copy">
+      <p class="moment-body">An anklet from Goa. One promise Goa never got to fulfil.</p>
+      <p class="moment-body">I meant to get it, I really did, I just kept putting it off.</p>
+      <p class="moment-body">Another small thing I owe you that I never followed through on.</p>
+    </div>
+  </section>
+
+  <!-- INSERT — Things I'll Never Forget About You #3 -->
+  <section class="page moment-page center-page insert-page" data-chapter="Things I'll Never Forget — III" id="insert-3">
+    <h2 class="moment-title center">Things I'll Never Forget</h2>
+    <p class="moment-title center small-sub">About You</p>
+    <div class="forget-list">
+      <p>Every "ho ka" I teased you about.</p>
+      <p>Your lectures about salads and mangoes.</p>
+      <p>The pink shirt you loved.</p>
+      <p>The anklet I still owe you.</p>
+      <p>The sunflower I never brought.</p>
+      <p>Goodnights that never actually ended on time.</p>
+      <p>How normal it felt to fight about small things with you.</p>
+    </div>
+  </section>
+
+  <!-- MOMENT 22 — The Clinic Hug -->
+  <section class="page moment-page center-page" data-chapter="22 · The Clinic Hug" id="page-22">
+    <span class="chapter-num">22</span>
+    <h2 class="moment-title center">The Clinic Hug</h2>
+    <div class="heartbeat small-symbol">🤝</div>
+    <div class="moment-copy center-copy">
+      <p class="moment-body">A bet. A promise.</p>
+      <p class="moment-body">A hug that life never got around to giving us.</p>
+      <p class="moment-body">Some plans just don't happen, no matter how much you mean them at the time.</p>
+      <p class="moment-body">This one's still unfinished, and I'm the giddiest guy ever, so I'll surely win this bet one day.</p>
+    </div>
+  </section>
+
+  <!-- MOMENT 23 — Watching Camera -->
+  <section class="page moment-page camera-page" data-chapter="23 · Watching The Camera" id="page-23">
+    <span class="chapter-num">23</span>
+    <h2 class="moment-title center">Watching The Camera</h2>
+    <div class="camera-frame zoom-frame">
+      <div class="camera-placeholder">🙂</div>
+    </div>
+    <div class="moment-copy center-copy">
+      <p class="moment-body">I ain't spying. I am missing you.</p>
+      <p class="moment-body">Some days that is the closest I could get to actually being near you.</p>
+      <p class="moment-body">A few seconds of watching you smile at something is enough to get through the day.</p>
+    </div>
+  </section>
+
+  <!-- MOMENT 24 — Reality -->
+  <section class="page moment-page reality-page" data-chapter="24 · Reality" id="page-24">
+    <span class="chapter-num">24</span>
+    <div class="reality-numbers">
+      <span class="num num-24">24</span>
+      <span class="num-heart">♡</span>
+      <span class="num num-28">28</span>
+    </div>
+    <p class="one-liner">Different paths. Same feelings.</p>
+    <div class="moment-copy center-copy">
+      <p class="moment-body">You have expectations for a partner that I couldn't meet where I was, and loving someone isn't always the same as being ready for what they actually need.</p>
+      <p class="moment-body">You're not looking to just date right now. You're looking for someone to marry, to build a proper life with, without guilt trailing behind it.</p>
+      <p class="moment-body">I respect that completely. It says more about your honesty than it does about anything going wrong between us.</p>
+    </div>
+  </section>
+
+  <!-- ENDING -->
+  <section class="page ending-page" data-chapter="After The Last Page" id="page-ending">
+    <div class="ending-inner">
+      <h2 class="moment-title center">After The Last Page...</h2>
+      <p class="ending-text">If you've reached here... thank you.</p>
+      <p class="ending-text">Not just for reading this book. But for living every page of it with me.</p>
+      <p class="ending-text">While making this, I realised that memories aren't made from grand gestures. They're made from tiny moments that quietly become part of your everyday life. A morning call. A random Snap. A silly joke. A three-hour conversation that felt like thirty minutes. Waiting for your notification without even realizing you were waiting.</p>
+      <p class="ending-text">You became a habit I never wanted to break.</p>
+      <p class="ending-text">And maybe that's why this is difficult. Not because we're choosing different paths. But because somewhere along the way, you became home.</p>
+      <p class="ending-text">I know this is the right decision for both of us. I respect it with my whole heart. If loving someone means anything, sometimes it means letting them walk toward the future they truly want, even when every part of you wishes the road was the same.</p>
+      <p class="ending-text">I've seen you from closer than most people ever will. I've seen the version that laughs until her stomach hurts, blushes for no reason, says "Su nathi" with the cutest smile, spins around on her chair, and somehow makes an ordinary day feel special just by being in it.</p>
+      <p class="ending-text">Thank you for trusting me with that version of you.</p>
+      <p class="ending-text">If one day you hear someone say "Ho ka," unwrap a KitKat, lose an earring, see a sunflower, eat terrible pizza, walk on a beach at midnight, or someone casually asks you, "Su kare che?"...</p>
+      <p class="ending-text">I hope you smile. Not because you miss me. But because once upon a time, two people found something incredibly beautiful, even if they couldn't keep it forever.</p>
+      <p class="ending-text">You'll always be my 🐣🌻. And no matter how many chapters life writes after this one... this will always remain one of my favourites.</p>
+      <div class="ending-symbols">🐣 🌻</div>
+      <p id="maliye-text" class="maliye-text">Maliye. ❤️</p>
+    </div>
+  </section>
+
+</main>
+
+
+<!-- chapter navigation drawer -->
+<div id="nav-drawer" class="nav-drawer" data-lenis-prevent>
+  <div class="nav-drawer-header">Chapters <button id="nav-close">✕</button></div>
+  <div id="nav-list" class="nav-list"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
