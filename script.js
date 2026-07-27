@@ -493,19 +493,16 @@ function bindTopbarControls(){
 
   const musicBtn = document.getElementById('music-toggle-btn');
   musicBtn.addEventListener('click', () => {
-    const audio = document.getElementById('ambient-audio');
-    if(audio.paused){
-      audio.volume = .4;
-      audio.play().then(() => {
-        musicBtn.textContent = '🔊';
-        musicBtn.classList.add('active');
-      }).catch(() => {
-        toast('Add a music file to assets/audio/piano.mp3 to enable this');
-      });
+    if(!ambientPlaying){
+      startAmbient();
+      musicBtn.textContent = '🔊';
+      musicBtn.classList.add('active');
+      toast('Ambient music on 🎵');
     } else {
-      audio.pause();
+      stopAmbient();
       musicBtn.textContent = '🔇';
       musicBtn.classList.remove('active');
+      toast('Music off');
     }
   });
 
@@ -525,11 +522,78 @@ function bindTopbarControls(){
 
 function playPageTurn(){
   if(!soundOn) return;
+  // try audio file first, fall back to Web Audio synthesis
   const audio = document.getElementById('page-turn-sound');
+  const played = audio.play();
+  if(played) played.catch(() => synthPageTurn());
+  else synthPageTurn();
+}
+
+function synthPageTurn(){
   try{
-    audio.currentTime = 0;
-    audio.play().catch(() => {});
-  }catch(e){ /* no audio file present, ignore */ }
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const dur = 0.13;
+    const buf = ctx.createBuffer(1, Math.floor(ctx.sampleRate * dur), ctx.sampleRate);
+    const data = buf.getChannelData(0);
+    for(let i = 0; i < data.length; i++){
+      const t = i / data.length;
+      data[i] = (Math.random() * 2 - 1) * Math.pow(1 - t, 2.8) * 0.4;
+    }
+    const src = ctx.createBufferSource();
+    src.buffer = buf;
+    const filt = ctx.createBiquadFilter();
+    filt.type = 'bandpass';
+    filt.frequency.value = 2800;
+    filt.Q.value = 0.6;
+    const gain = ctx.createGain();
+    gain.gain.setValueAtTime(0.55, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + dur);
+    src.connect(filt);
+    filt.connect(gain);
+    gain.connect(ctx.destination);
+    src.start();
+    setTimeout(() => { try{ ctx.close(); }catch(e){} }, 600);
+  }catch(e){}
+}
+
+/* ---- ambient music (Web Audio API) ---- */
+let ambientCtx = null, ambientMaster = null, ambientPlaying = false;
+
+function startAmbient(){
+  try{
+    ambientCtx = new (window.AudioContext || window.webkitAudioContext)();
+    ambientMaster = ambientCtx.createGain();
+    ambientMaster.gain.setValueAtTime(0, ambientCtx.currentTime);
+    ambientMaster.gain.linearRampToValueAtTime(0.16, ambientCtx.currentTime + 3);
+    ambientMaster.connect(ambientCtx.destination);
+
+    // C major chord — C4, E4, G4, C5 — soft sine waves, slightly detuned for warmth
+    [261.63, 329.63, 392.00, 523.25].forEach((freq, i) => {
+      [-2, 0, 2].forEach(cent => {
+        const osc = ambientCtx.createOscillator();
+        osc.type = 'sine';
+        osc.frequency.value = freq;
+        osc.detune.value = cent;
+        const g = ambientCtx.createGain();
+        g.gain.value = 0.07 / (i + 1);
+        osc.connect(g);
+        g.connect(ambientMaster);
+        osc.start();
+      });
+    });
+    ambientPlaying = true;
+  }catch(e){}
+}
+
+function stopAmbient(){
+  if(ambientMaster && ambientCtx){
+    ambientMaster.gain.linearRampToValueAtTime(0, ambientCtx.currentTime + 1.2);
+    setTimeout(() => {
+      try{ ambientCtx.close(); }catch(e){}
+      ambientCtx = null; ambientMaster = null;
+    }, 1400);
+  }
+  ambientPlaying = false;
 }
 
 function toast(msg){
