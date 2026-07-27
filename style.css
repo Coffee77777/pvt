@@ -124,6 +124,7 @@ body::before{
 .sunflower-svg.grown #petal-group{ animation:slowSpin 55s linear infinite; }
 .sunflower-svg.grown #petal-group-inner{ animation:slowSpin 42s linear infinite reverse; }
 @keyframes slowSpin{ to{ transform:rotate(360deg); } }
+.sunflower-bg{ fill:#3e1e08; }
 .sunflower-center{ fill:#3e1e08; transform-origin:110px 110px; transform:scale(0); }
 .sunflower-center-ring{
   fill:none; stroke:#6b3510; stroke-width:1.2; opacity:.5;
