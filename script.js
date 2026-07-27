@@ -2,11 +2,14 @@
    BEFORE WE BECAME MEMORIES — interactions
 ======================================================== */
 
+const PASSWORD = 'Jaylaa'; // change this to update the password
+
 let lenis;
 let soundOn = false;
 let currentBookmarkPage = 'page-cover';
 
 document.addEventListener('DOMContentLoaded', () => {
+  initPasswordScreen();
   initCursor();
   initLoader();
   bindTopbarControls();
@@ -77,42 +80,89 @@ function skipToBegin(){
   document.getElementById('begin-btn').classList.add('show');
 }
 
+/* ---- password screen ---- */
+function initPasswordScreen(){
+  const screen = document.getElementById('pw-screen');
+  if(!screen) return;
+  const input  = document.getElementById('pw-input');
+  const btn    = document.getElementById('pw-btn');
+  const error  = document.getElementById('pw-error');
+
+  function attempt(){
+    if(input.value.trim().toLowerCase() === PASSWORD.toLowerCase()){
+      screen.classList.add('unlocking');
+      setTimeout(() => { screen.style.display = 'none'; }, 950);
+    } else {
+      screen.classList.remove('shake');
+      void screen.offsetWidth;
+      screen.classList.add('shake');
+      error.textContent = 'try again ♡';
+      error.classList.add('show');
+      input.value = '';
+      input.focus();
+    }
+  }
+
+  btn.addEventListener('click', attempt);
+  input.addEventListener('keydown', e => { if(e.key === 'Enter') attempt(); });
+  input.addEventListener('input', () => error.classList.remove('show'));
+}
+
 /* ---- sunflower bloom (signature intro moment) ---- */
 function buildSunflowerPetals(){
   const group = document.getElementById('petal-group');
+  const innerGroup = document.getElementById('petal-group-inner');
   if(group.dataset.built) return;
   group.dataset.built = '1';
   const svgNS = 'http://www.w3.org/2000/svg';
-  const total = 12;
-  for(let i = 0; i < total; i++){
-    const angle = (360 / total) * i;
+
+  // outer petals — 16 pointed ray petals
+  const outerCount = 16;
+  for(let i = 0; i < outerCount; i++){
+    const angle = (360 / outerCount) * i;
     const g = document.createElementNS(svgNS, 'g');
     g.setAttribute('transform', `rotate(${angle} 110 110)`);
-    const petal = document.createElementNS(svgNS, 'ellipse');
-    petal.setAttribute('cx', '110');
-    petal.setAttribute('cy', '58');
-    petal.setAttribute('rx', '13');
-    petal.setAttribute('ry', '36');
-    petal.setAttribute('class', 'petal' + (i % 2 ? ' alt' : ''));
-    petal.style.transformOrigin = '110px 58px';
-    petal.style.transform = 'scale(0)';
+    const petal = document.createElementNS(svgNS, 'path');
+    petal.setAttribute('d', 'M110 78 C100 64 98 40 110 22 C122 40 120 64 110 78');
+    petal.setAttribute('fill', i % 2 === 0 ? '#f5c832' : '#e8a820');
     g.appendChild(petal);
     group.appendChild(g);
   }
+
+  // inner petals — shorter, offset by half step, darker gold
+  if(innerGroup && !innerGroup.dataset.built){
+    innerGroup.dataset.built = '1';
+    for(let i = 0; i < outerCount; i++){
+      const angle = (360 / outerCount) * i + (360 / outerCount / 2);
+      const g = document.createElementNS(svgNS, 'g');
+      g.setAttribute('transform', `rotate(${angle} 110 110)`);
+      const petal = document.createElementNS(svgNS, 'path');
+      petal.setAttribute('d', 'M110 78 C105 72 104 59 110 49 C116 59 115 72 110 78');
+      petal.setAttribute('fill', '#c98c12');
+      g.appendChild(petal);
+      innerGroup.appendChild(g);
+    }
+  }
 }
+
 function bloomSunflower(instant){
   buildSunflowerPetals();
   const stage = document.getElementById('sunflower-stage');
-  const svg = document.getElementById('sunflower-svg');
+  const svg   = document.getElementById('sunflower-svg');
   const chick = document.querySelector('.chick-doodle');
   stage.classList.add('show');
-  const petals = document.querySelectorAll('#petal-group .petal');
+
+  const outerGs = document.querySelectorAll('#petal-group > g');
+  const innerGs = document.querySelectorAll('#petal-group-inner > g');
+  const centers = '.sunflower-center, .sunflower-center-texture, .sunflower-center-ring';
+
   if(instant || typeof gsap === 'undefined'){
-    petals.forEach(p => p.style.transform = 'scale(1)');
-    document.querySelectorAll('.sunflower-center, .sunflower-center-texture').forEach(c => c.style.transform = 'scale(1)');
+    document.querySelectorAll(centers).forEach(c => c.style.transform = 'scale(1)');
   } else {
-    gsap.to(petals, { scale: 1, duration: .7, ease: 'back.out(2.2)', stagger: .045 });
-    gsap.fromTo('.sunflower-center, .sunflower-center-texture', { scale: 0 }, { scale: 1, duration: .5, delay: .3, ease: 'back.out(2)' });
+    gsap.set([...outerGs, ...innerGs], { scale: 0, svgOrigin: '110 110' });
+    gsap.to(outerGs, { scale: 1, duration: .65, ease: 'back.out(2.2)', stagger: .04, svgOrigin: '110 110' });
+    gsap.to(innerGs, { scale: 1, duration: .45, ease: 'back.out(2)',   stagger: .03, delay: .3, svgOrigin: '110 110' });
+    gsap.fromTo(centers, { scale: 0 }, { scale: 1, duration: .5, delay: .55, ease: 'back.out(2)', svgOrigin: '110 110' });
   }
   setTimeout(() => svg.classList.add('grown'), 900);
   setTimeout(() => chick.classList.add('show'), instant ? 0 : 500);

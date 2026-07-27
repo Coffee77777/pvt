@@ -10,6 +10,20 @@
 </head>
 <body>
 
+<!-- PASSWORD SCREEN -->
+<div id="pw-screen" class="pw-screen">
+  <div class="pw-inner">
+    <span class="pw-seal">🌻</span>
+    <h1 class="pw-title">Made for<br>one person.</h1>
+    <p class="pw-sub">enter the word only you'd know</p>
+    <div class="pw-field-wrap">
+      <input id="pw-input" class="pw-input" type="text" placeholder="···" autocomplete="off" spellcheck="false" autocapitalize="none" />
+    </div>
+    <button id="pw-btn" class="pw-btn">Open ↗</button>
+    <p id="pw-error" class="pw-error"></p>
+  </div>
+</div>
+
 <!-- custom cursor -->
 <div class="cursor" id="cursor">🌻</div>
 
@@ -30,8 +44,11 @@
     <div id="sunflower-stage" class="sunflower-stage">
       <svg id="sunflower-svg" class="sunflower-svg" viewBox="0 0 220 220">
         <g id="petal-group"></g>
-        <circle cx="110" cy="110" r="30" class="sunflower-center"></circle>
-        <circle cx="110" cy="110" r="30" class="sunflower-center-texture"></circle>
+        <g id="petal-group-inner"></g>
+        <circle cx="110" cy="110" r="34" class="sunflower-center"></circle>
+        <circle cx="110" cy="110" r="27" class="sunflower-center-ring"></circle>
+        <circle cx="110" cy="110" r="19" class="sunflower-center-ring"></circle>
+        <circle cx="110" cy="110" r="34" class="sunflower-center-texture"></circle>
       </svg>
       <span class="chick-doodle">🐣</span>
     </div>
