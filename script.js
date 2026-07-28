@@ -2,8 +2,7 @@
    BEFORE WE BECAME MEMORIES — interactions
 ======================================================== */
 
-const PASSWORD  = 'Jaylaa'; // screen 1 password
-const PASSWORD2 = 'Him';    // screen 2 answer (who's more funny and charming?)
+const PASSWORD = 'Jaylaa'; // change this to update the password
 
 let lenis;
 let soundOn = false;
@@ -81,31 +80,18 @@ function skipToBegin(){
   document.getElementById('begin-btn').classList.add('show');
 }
 
-/* ---- password screens ---- */
+/* ---- password screen ---- */
 function initPasswordScreen(){
-  // --- screen 1 ---
-  const screen  = document.getElementById('pw-screen');
-  const input   = document.getElementById('pw-input');
-  const btn     = document.getElementById('pw-btn');
-  const error   = document.getElementById('pw-error');
+  const screen = document.getElementById('pw-screen');
+  if(!screen) return;
+  const input  = document.getElementById('pw-input');
+  const btn    = document.getElementById('pw-btn');
+  const error  = document.getElementById('pw-error');
 
-  // --- screen 2 ---
-  const screen2 = document.getElementById('pw-screen-2');
-  const input2  = document.getElementById('pw-input-2');
-  const btn2    = document.getElementById('pw-btn-2');
-  const error2  = document.getElementById('pw-error-2');
-
-  function attempt1(){
+  function attempt(){
     if(input.value.trim().toLowerCase() === PASSWORD.toLowerCase()){
       screen.classList.add('unlocking');
-      setTimeout(() => {
-        screen.style.display = 'none';
-        // let loader show through the frosted glass of screen 2
-        const loader = document.getElementById('loader');
-        if(loader) loader.style.filter = 'blur(4px) brightness(0.96)';
-        screen2.classList.add('pw-visible');
-        setTimeout(() => input2.focus(), 300);
-      }, 950);
+      setTimeout(() => { screen.style.display = 'none'; }, 950);
     } else {
       screen.classList.remove('shake');
       void screen.offsetWidth;
@@ -117,30 +103,9 @@ function initPasswordScreen(){
     }
   }
 
-  function attempt2(){
-    if(input2.value.trim().toLowerCase() === PASSWORD2.toLowerCase()){
-      screen2.classList.add('unlocking');
-      const loader = document.getElementById('loader');
-      if(loader) loader.style.filter = 'none';
-      setTimeout(() => { screen2.style.display = 'none'; }, 950);
-    } else {
-      screen2.classList.remove('shake');
-      void screen2.offsetWidth;
-      screen2.classList.add('shake');
-      error2.textContent = 'are you sure? think again ♡';
-      error2.classList.add('show');
-      input2.value = '';
-      input2.focus();
-    }
-  }
-
-  btn.addEventListener('click', attempt1);
-  input.addEventListener('keydown', e => { if(e.key === 'Enter') attempt1(); });
+  btn.addEventListener('click', attempt);
+  input.addEventListener('keydown', e => { if(e.key === 'Enter') attempt(); });
   input.addEventListener('input', () => error.classList.remove('show'));
-
-  btn2.addEventListener('click', attempt2);
-  input2.addEventListener('keydown', e => { if(e.key === 'Enter') attempt2(); });
-  input2.addEventListener('input', () => error2.classList.remove('show'));
 }
 
 /* ---- sunflower bloom (signature intro moment) ---- */
