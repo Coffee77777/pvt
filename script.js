@@ -100,9 +100,8 @@ function initPasswordScreen(){
       screen.classList.add('unlocking');
       setTimeout(() => {
         screen.style.display = 'none';
-        screen2.classList.remove('pw-screen-hidden');
-        screen2.classList.add('pw-entering');
-        setTimeout(() => input2.focus(), 400);
+        screen2.classList.add('pw-visible');
+        setTimeout(() => input2.focus(), 300);
       }, 950);
     } else {
       screen.classList.remove('shake');

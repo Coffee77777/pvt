@@ -161,26 +161,17 @@ body::before{
   background-position:0 0, 0 0, 2px 3px;
 }
 #pw-screen.unlocking{ opacity:0; pointer-events:none; }
-.pw-screen-hidden{ display:none !important; }
 #pw-screen-2{
-  position:fixed; inset:0; z-index:5999;
-  align-items:center; justify-content:center;
-  background:var(--cream);
-  transition:opacity .9s var(--ease);
+  z-index:5999;
+  opacity:0; pointer-events:none;
+  transform:translateY(20px);
+  transition:opacity .6s var(--ease), transform .6s var(--ease);
 }
-#pw-screen-2::before{
-  content:"";
-  position:absolute; inset:0; pointer-events:none;
-  background-image:
-    radial-gradient(circle at 50% 45%, var(--paper) 0%, var(--cream) 72%),
-    radial-gradient(rgba(0,0,0,.03) 1px, transparent 1px),
-    radial-gradient(rgba(0,0,0,.02) 1px, transparent 1px);
-  background-size:100% 100%, 3px 3px, 7px 7px;
-  background-position:0 0, 0 0, 2px 3px;
+#pw-screen-2.pw-visible{
+  opacity:1; pointer-events:auto;
+  transform:none;
 }
 #pw-screen-2.unlocking{ opacity:0; pointer-events:none; }
-#pw-screen-2.pw-entering{ display:flex; animation:pwFadeIn .6s var(--ease) forwards; }
-@keyframes pwFadeIn{ from{opacity:0; transform:translateY(18px)} to{opacity:1; transform:none} }
 .pw-inner{
   position:relative; z-index:1;
   text-align:center; padding:0 32px; width:100%; max-width:480px;
