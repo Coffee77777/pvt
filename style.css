@@ -161,6 +161,10 @@ body::before{
   background-position:0 0, 0 0, 2px 3px;
 }
 #pw-screen.unlocking{ opacity:0; pointer-events:none; }
+.pw-screen-hidden{ display:none; }
+#pw-screen-2{ z-index:5999; }
+#pw-screen-2.pw-entering{ display:flex; animation:pwFadeIn .6s var(--ease) forwards; }
+@keyframes pwFadeIn{ from{opacity:0; transform:translateY(18px)} to{opacity:1; transform:none} }
 .pw-inner{
   position:relative; z-index:1;
   text-align:center; padding:0 32px; width:100%; max-width:480px;
