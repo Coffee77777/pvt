@@ -189,10 +189,16 @@ function initScrollSystems(){
   }
   gsap.registerPlugin(ScrollTrigger);
 
-  lenis = new Lenis({ duration: 1.15, smoothWheel: true, syncTouch: false, touchMultiplier: 1.5 });
-  lenis.on('scroll', ScrollTrigger.update);
-  gsap.ticker.add((time) => lenis.raf(time * 1000));
-  gsap.ticker.lagSmoothing(0);
+  const isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+  if(!isTouch){
+    lenis = new Lenis({ duration: 1.15, smoothWheel: true });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((time) => lenis.raf(time * 1000));
+    gsap.ticker.lagSmoothing(0);
+  } else {
+    // native scroll on touch — no sticky lag
+    window.addEventListener('scroll', ScrollTrigger.update, { passive: true });
+  }
 
   buildChapterNav();
   buildProgressBar();
@@ -223,7 +229,7 @@ function buildChapterNav(){
     const dot = document.createElement('div');
     dot.className = 'dot';
     dot.title = label;
-    dot.addEventListener('click', () => lenis.scrollTo('#' + p.id));
+    dot.addEventListener('click', () => lenis ? lenis.scrollTo('#' + p.id) : p.scrollIntoView({ behavior:'smooth' }));
     dotsWrap.appendChild(dot);
     addHoverGrow(dot);
 
@@ -232,7 +238,7 @@ function buildChapterNav(){
     link.textContent = label;
     link.addEventListener('click', (e) => {
       e.preventDefault();
-      lenis.scrollTo('#' + p.id);
+      lenis ? lenis.scrollTo('#' + p.id) : p.scrollIntoView({ behavior:'smooth' });
       document.getElementById('nav-drawer').classList.remove('open');
     });
     navList.appendChild(link);
@@ -452,7 +458,7 @@ function showResumeToast(pageId){
   span.textContent = 'Tap to resume from your bookmark 🔖';
   span.style.cursor = 'pointer';
   span.addEventListener('click', () => {
-    lenis.scrollTo('#' + pageId, { duration: 1.2 });
+    lenis ? lenis.scrollTo('#' + pageId, { duration: 1.2 }) : document.getElementById(pageId)?.scrollIntoView({ behavior:'smooth' });
     el.classList.remove('show');
   });
   el.appendChild(span);
