@@ -100,6 +100,9 @@ function initPasswordScreen(){
       screen.classList.add('unlocking');
       setTimeout(() => {
         screen.style.display = 'none';
+        // let loader show through the frosted glass of screen 2
+        const loader = document.getElementById('loader');
+        if(loader) loader.style.filter = 'blur(4px) brightness(0.96)';
         screen2.classList.add('pw-visible');
         setTimeout(() => input2.focus(), 300);
       }, 950);
@@ -117,6 +120,8 @@ function initPasswordScreen(){
   function attempt2(){
     if(input2.value.trim().toLowerCase() === PASSWORD2.toLowerCase()){
       screen2.classList.add('unlocking');
+      const loader = document.getElementById('loader');
+      if(loader) loader.style.filter = 'none';
       setTimeout(() => { screen2.style.display = 'none'; }, 950);
     } else {
       screen2.classList.remove('shake');
