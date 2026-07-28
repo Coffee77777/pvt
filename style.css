@@ -39,7 +39,7 @@ html,body{
   color:var(--ink);
   font-family:var(--ui);
 }
-body{ cursor:auto; overflow-x:hidden; transition:background .5s var(--ease), color .5s var(--ease); }
+body{ cursor:auto; overflow-x:hidden; overscroll-behavior-y:none; transition:background .5s var(--ease), color .5s var(--ease); }
 body.custom-cursor-ready{ cursor:none; }
 img{ max-width:100%; display:block; }
 h1,h2,h3{ font-family:var(--display); margin:0; }

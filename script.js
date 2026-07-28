@@ -196,7 +196,8 @@ function initScrollSystems(){
     gsap.ticker.add((time) => lenis.raf(time * 1000));
     gsap.ticker.lagSmoothing(0);
   } else {
-    // native scroll on touch — no sticky lag
+    // normalizeScroll tames iOS momentum & direction-change bounce
+    ScrollTrigger.normalizeScroll({ allowNestedScroll: true, momentum: self => Math.min(3, self.velocityY * 0.3) });
     window.addEventListener('scroll', ScrollTrigger.update, { passive: true });
   }
 
