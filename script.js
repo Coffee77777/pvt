@@ -3,7 +3,7 @@
 ======================================================== */
 
 // password stored as SHA-256 hash — plaintext never lives in source
-const PW_HASH = '0752a6205e363e245bf1bc5e40ff8ca1732dd83a743999bb6a6cd6f8b2ebb834';
+const PW_HASH = '0ee5422a2f0b7fda05fb1d03bf2afa3095f651ea2d207484d33d1102779911d2';
 
 let lenis;
 let soundOn = false;
