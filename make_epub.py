@@ -476,6 +476,25 @@ chapters = [
         "And honestly? The next time I come, we&#8217;re going to want that one hug more than we&#8217;ve ever wanted anything.",
         "God is just keeping the interest running. &#x1F423;&#x1F33B;",
     ], "ch26")),
+    ("ch27",     "27 · Your Voice is My Alarm",  chapter("27", "Your Voice is My Alarm", [
+        "There is a specific version of your voice &#8212; the one right after you wake up &#8212; that I have decided is my favourite sound in the world. Half asleep, slightly hoarse, still figuring out where you are. I wake up to it every morning and I genuinely don&#8217;t think I could start my day properly without it.",
+        "But there is a flip side nobody talks about.",
+        "The days you&#8217;re already up before I call &#8212; those hit differently. Today, 4th August 2026, you gave me a call with a voice that was too fresh, too awake, too already-started-your-day. And I sat there genuinely jealous, wondering who got to be your alarm this morning. Because that job is supposed to be mine.",
+        "The day before yesterday we couldn&#8217;t talk at all. I stretched my eyes watching YouTube until they gave up on me. Sleep didn&#8217;t feel like rest. It just felt like the absence of you.",
+        "I want to be your alarm. And your sleeping therapy. Both. Daily. Non-negotiable.",
+    ], "ch27")),
+    ("ch28",     "28 · The Ladoo Surprise",      chapter("28", "The Ladoo Surprise", [
+        "Today, 4th August 2026. 12pm.",
+        "I walked 2 kilometres to a shop called Sonalben Khakhrawala. I had a picture on my phone &#8212; khajoor gaund ladoo, exactly the kind you&#8217;d been craving &#8212; and I walked up and asked, &#8220;Is this available?&#8221;",
+        "They said yes. Why not.",
+        "I got three packs instead of two, because two felt like it wasn&#8217;t enough for someone whose cravings deserve to be taken seriously.",
+        "I handed them over to Sunil bhai. He immediately asked, &#8220;What&#8217;s the charge?&#8221;",
+        "I smiled. &#8220;I&#8217;ll never charge anything from my close ones.&#8221;",
+        "He pushed back. Said she&#8217;d yell at him. I told him &#8212; tell her to send me those KitKats she owes me. He looked genuinely confused.",
+        "I walked home feeling like I&#8217;d won something.",
+        "And no, I&#8217;m not telling you any of this. Someone in this story likes surprises more than they like knowing things in advance.",
+        "(I can already see you smiling reading this. The right item this time. No condom plot twist.)",
+    ], "ch28")),
     ("ending",   "After The Last Page",          xhtml("After The Last Page", ENDING_BODY, "ending")),
 ]
 
