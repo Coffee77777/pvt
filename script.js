@@ -689,17 +689,40 @@ function initSecretPage(){
 
   const UNLOCK = new Date('2026-08-27T00:00:00');
 
-  // TEMP: always revealed for preview — re-lock after approval
-  inner.innerHTML = `
-    <img src="/our-story.jpg" class="secret-story-img" alt="Our Story"/>
-    <span class="secret-revealed-badge">✦ 27th August ✦</span>
-    <h2 class="secret-revealed-title">Happy Birthday.</h2>
-    <p class="secret-revealed-text">I don't know how to say this without it sounding small — but you are one of those rare people who make the world feel warmer just by existing in it. Not because of anything you try to do. Just because of who you are.</p>
-    <p class="secret-revealed-text">The way you care without making it loud. The way you laugh — really laugh. The way you carry yourself even on the hard days. The way you make people feel like they actually matter.</p>
-    <p class="secret-revealed-text">I hope today is soft and full and yours. I hope the people around you love you the way you deserve to be loved. I hope something today makes you smile in that way — the one where you try to hide it but can't.</p>
-    <p class="secret-revealed-text">You are someone worth celebrating. Not just today. Every day.</p>
-    <p class="secret-revealed-text">Happy birthday, my favourite person. I'm really, really glad you were born. 🎂</p>
-    <p class="secret-revealed-emoji">🐣🌻❤️</p>`;
+  function render(){
+    const now  = new Date();
+    const diff = UNLOCK - now;
+
+    if(diff <= 0){
+      inner.innerHTML = `
+        <img src="/our-story.jpg" class="secret-story-img" alt="Our Story"/>
+        <span class="secret-revealed-badge">✦ 27th August ✦</span>
+        <h2 class="secret-revealed-title">Happy Birthday.</h2>
+        <p class="secret-revealed-text">I don't know how to say this without it sounding small — but you are one of those rare people who make the world feel warmer just by existing in it. Not because of anything you try to do. Just because of who you are.</p>
+        <p class="secret-revealed-text">The way you care without making it loud. The way you laugh — really laugh. The way you carry yourself even on the hard days. The way you make people feel like they actually matter.</p>
+        <p class="secret-revealed-text">I hope today is soft and full and yours. I hope the people around you love you the way you deserve to be loved. I hope something today makes you smile in that way — the one where you try to hide it but can't.</p>
+        <p class="secret-revealed-text">You are someone worth celebrating. Not just today. Every day.</p>
+        <p class="secret-revealed-text">Happy birthday, my favourite person. I'm really, really glad you were born. 🎂</p>
+        <p class="secret-revealed-emoji">🐣🌻❤️</p>`;
+    } else {
+      const days  = Math.floor(diff / 864e5);
+      const hrs   = Math.floor((diff % 864e5) / 36e5);
+      const mins  = Math.floor((diff % 36e5)  / 6e4);
+      const secs  = Math.floor((diff % 6e4)   / 1e3);
+      inner.innerHTML = `
+        <p class="secret-countdown-label">✦ something is waiting ✦</p>
+        <h2 class="secret-countdown-title">This page unlocks<br>on 27th August.</h2>
+        <p class="secret-countdown-sub">Come back then. You'll know why.</p>
+        <div class="countdown-digits">
+          <div class="countdown-unit"><span class="countdown-num">${String(days).padStart(2,'0')}</span><span class="countdown-lbl">days</span></div>
+          <div class="countdown-unit"><span class="countdown-num">${String(hrs).padStart(2,'0')}</span><span class="countdown-lbl">hrs</span></div>
+          <div class="countdown-unit"><span class="countdown-num">${String(mins).padStart(2,'0')}</span><span class="countdown-lbl">min</span></div>
+          <div class="countdown-unit"><span class="countdown-num">${String(secs).padStart(2,'0')}</span><span class="countdown-lbl">sec</span></div>
+        </div>`;
+      setTimeout(render, 1000);
+    }
+  }
+  render();
 }
 
 /* ══════════════════════════════════════════════════════
