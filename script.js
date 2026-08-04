@@ -2,7 +2,8 @@
    BEFORE WE BECAME MEMORIES — interactions
 ======================================================== */
 
-const PASSWORD = 'Jaylaa'; // change this to update the password
+// password stored as SHA-256 hash — plaintext never lives in source
+const PW_HASH = '0752a6205e363e245bf1bc5e40ff8ca1732dd83a743999bb6a6cd6f8b2ebb834';
 
 let lenis;
 let soundOn = false;
@@ -88,8 +89,16 @@ function initPasswordScreen(){
   const btn    = document.getElementById('pw-btn');
   const error  = document.getElementById('pw-error');
 
-  function attempt(){
-    if(input.value.trim().toLowerCase() === PASSWORD.toLowerCase()){
+  async function sha256(str){
+    const buf = await crypto.subtle.digest('SHA-256',
+      new TextEncoder().encode(str));
+    return Array.from(new Uint8Array(buf))
+      .map(b => b.toString(16).padStart(2,'0')).join('');
+  }
+
+  async function attempt(){
+    const hash = await sha256(input.value.trim().toLowerCase());
+    if(hash === PW_HASH){
       screen.classList.add('unlocking');
       setTimeout(() => { screen.style.display = 'none'; }, 950);
     } else {
