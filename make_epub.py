@@ -485,7 +485,7 @@ chapters = [
     ], "ch27")),
     ("ch28",     "28 · The Ladoo Surprise",      chapter("28", "The Ladoo Surprise", [
         "Today, 4th August 2026. 12pm.",
-        "I walked 2 kilometres to a shop called Sonalben Khakhrawala. I had a picture on my phone &#8212; khajoor gaund ladoo, exactly the kind you&#8217;d been craving &#8212; and I walked up and asked, &#8220;Is this available?&#8221;",
+        "I drove 2 kilometres to a shop called Sonalben Khakhrawala. I had a picture on my phone &#8212; khajoor gaund ladoo, exactly the kind you&#8217;d been craving &#8212; and I walked up and asked, &#8220;Is this available?&#8221;",
         "They said yes. Why not.",
         "I got three packs instead of two, because two felt like it wasn&#8217;t enough for someone whose cravings deserve to be taken seriously.",
         "I handed them over to Sunil bhai. He immediately asked, &#8220;What&#8217;s the charge?&#8221;",
