@@ -265,6 +265,7 @@ function buildChapterNav(){
 }
 function setActiveDot(i, id){
   document.querySelectorAll('.chapter-dots .dot').forEach((d, idx) => d.classList.toggle('active', idx === i));
+  if(CURL_CHAPTERS.has(id)) triggerPageCurl();
   currentBookmarkPage = id;
   setMusicMood(id);
 }
@@ -678,6 +679,27 @@ function stopAmbient(){
     }, 1400);
   }
   ambientPlaying = false;
+}
+
+/* ══════════════════════════════════════════════════════
+   FEATURE 4 — PAGE CURL between major chapters
+══════════════════════════════════════════════════════ */
+const CURL_CHAPTERS = new Set([
+  'page-letter','page-1','insert-1','page-7','insert-2',
+  'page-16','insert-3','page-22','page-24','page-27','page-30','page-ending'
+]);
+let lastCurlTime = 0;
+
+function triggerPageCurl(){
+  const now = Date.now();
+  if(now - lastCurlTime < 900) return;
+  lastCurlTime = now;
+  const leaf = document.getElementById('curl-leaf');
+  if(!leaf) return;
+  leaf.classList.remove('turning');
+  void leaf.offsetWidth;
+  leaf.classList.add('turning');
+  setTimeout(() => leaf.classList.remove('turning'), 700);
 }
 
 /* ══════════════════════════════════════════════════════

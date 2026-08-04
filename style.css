@@ -358,6 +358,51 @@ body::before{
   padding:110px 8vw;
   overflow:visible;
 }
+/* page curl — bottom-right corner */
+.page::before{
+  content:"";
+  position:absolute;
+  bottom:0; right:0;
+  width:0; height:0;
+  border-style:solid;
+  border-width:0 0 38px 38px;
+  border-color:transparent transparent var(--paper-dark) transparent;
+  filter:drop-shadow(-3px -3px 4px rgba(0,0,0,.12));
+  transition:border-width .35s var(--ease);
+  z-index:3;
+  pointer-events:none;
+}
+.page:hover::before{
+  border-width:0 0 54px 54px;
+  filter:drop-shadow(-4px -4px 8px rgba(0,0,0,.18));
+}
+/* curl gloss shine */
+.page::before{
+  background:linear-gradient(225deg, rgba(255,255,255,.18) 0%, transparent 60%);
+}
+
+/* page curl transition overlay */
+.curl-overlay{
+  position:fixed; inset:0; z-index:8000;
+  pointer-events:none;
+  perspective:1200px;
+}
+.curl-leaf{
+  position:absolute; inset:0;
+  background:var(--cream);
+  transform-origin:left center;
+  transform:rotateY(0deg);
+  backface-visibility:hidden;
+  box-shadow: inset -8px 0 20px rgba(0,0,0,.08);
+  opacity:0;
+}
+@keyframes pageTurn{
+  0%  { opacity:1; transform:rotateY(0deg); }
+  40% { opacity:1; }
+  100%{ opacity:0; transform:rotateY(-100deg); }
+}
+.curl-leaf.turning{ animation:pageTurn .65s cubic-bezier(.4,0,.2,1) forwards; }
+
 .page::after{ /* torn bottom edge */
   content:""; position:absolute; left:0; right:0; bottom:0; height:10px;
   background:repeating-linear-gradient(115deg, var(--cream) 0 6px, transparent 6px 12px);
