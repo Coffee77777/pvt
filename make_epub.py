@@ -505,6 +505,31 @@ chapters = [
         "And no, I&#8217;m not telling you any of this. Someone in this story likes surprises more than they like knowing things in advance.",
         "(I can already see you smiling reading this. The right item this time. No condom plot twist.)",
     ], "ch28")),
+    ("ch30",     "30 · We Said Something",       chapter("30", "We Said Something", [
+        "We had a conversation once that I didn&#8217;t know how to hold.",
+        "Not a fight. Not a goodbye. Just two people sitting with the truth of something that had no clean answer.",
+        "We said it gently &#8212; that this probably needs to slow down. That there&#8217;s no ending in sight, and maybe that&#8217;s the problem. That feelings this real, sitting in a space this undefined, can quietly become heavy for both people if nobody says anything.",
+        "So we said something.",
+    ], "ch30")),
+    ("ch31",     "31 · The Quiet After",          chapter("31", "The Quiet After", [
+        "And I sat with it after. Not angry. Not broken.",
+        "Just quiet in the way you get quiet when something makes sense and hurts at the same time.",
+        "I understood every word of it. I just didn&#8217;t know what to do with the part of me that didn&#8217;t want to.",
+        "Some things don&#8217;t need a resolution. They just need to be felt completely, folded carefully, and kept somewhere honest &#8212;",
+        "like here.",
+    ], "ch31")),
+    ("ch32",     "32 · It's You",                 chapter("32", "It&#8217;s You", [
+        "You rearranged me gently,",
+        "didn&#8217;t move a single thing,",
+        "yet nothing looks the same now,",
+        "and I don&#8217;t mind anything.",
+        "So here it stays, pressed between pages,",
+        "before time changes the view &#8212;",
+        "the truest thing I&#8217;ve written",
+        "is simply this:",
+        "it&#8217;s you.",
+        "&#x1F423;&#x1F33B;",
+    ], "ch32")),
     ("ending",   "After The Last Page",          xhtml("After The Last Page", ENDING_BODY, "ending")),
 ]
 

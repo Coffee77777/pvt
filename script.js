@@ -309,6 +309,7 @@ function buildSpecialTriggers(){
   const byId = [
     { id: 'map-svg',      fn: animatePlane },
     { id: 'starfield',    fn: buildStarfield },
+    { id: 'starfield-2',  fn: buildStarfield },
     { id: 'earring-stage',fn: animateEarring },
     { id: 'call-timer',   fn: animateCallTimer },
     { id: 'petals',       fn: buildPetals }
@@ -385,17 +386,19 @@ function animateSteam(){
 }
 
 function buildStarfield(){
-  const field = document.getElementById('starfield');
-  if(!field || field.dataset.done) return;
-  field.dataset.done = '1';
-  for(let i = 0; i < 70; i++){
-    const s = document.createElement('span');
-    s.style.left = (Math.random() * 100) + '%';
-    s.style.top = (Math.random() * 100) + '%';
-    s.style.animationDelay = (Math.random() * 3) + 's';
-    s.style.animationDuration = (2 + Math.random() * 3) + 's';
-    field.appendChild(s);
-  }
+  ['starfield','starfield-2'].forEach(id => {
+    const field = document.getElementById(id);
+    if(!field || field.dataset.done) return;
+    field.dataset.done = '1';
+    for(let i = 0; i < 70; i++){
+      const s = document.createElement('span');
+      s.style.left = (Math.random() * 100) + '%';
+      s.style.top = (Math.random() * 100) + '%';
+      s.style.animationDelay = (Math.random() * 3) + 's';
+      s.style.animationDuration = (2 + Math.random() * 3) + 's';
+      field.appendChild(s);
+    }
+  });
 }
 
 function animateEarring(){
