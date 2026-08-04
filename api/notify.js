@@ -1,6 +1,6 @@
-import https from 'https';
+const https = require('https');
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
 
   const body = `Opened at ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })} IST`;
@@ -12,17 +12,17 @@ export default async function handler(req, res) {
       path: '/coffee_7',
       method: 'POST',
       headers: {
-        'Title':    '🌻 She opened the book',
-        'Priority': 'high',
-        'Tags':     'sunflower,heart',
+        'Title':          '\ud83c\udf3b She opened the book',
+        'Priority':       'high',
+        'Tags':           'sunflower,heart',
         'Content-Length': Buffer.byteLength(body)
       }
     };
-    const reqN = https.request(options, (r) => { r.resume(); resolve(); });
-    reqN.on('error', resolve);
-    reqN.write(body);
-    reqN.end();
+    const r = https.request(options, (res) => { res.resume(); resolve(); });
+    r.on('error', resolve);
+    r.write(body);
+    r.end();
   });
 
   res.status(200).json({ ok: true });
-}
+};
