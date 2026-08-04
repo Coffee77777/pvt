@@ -312,7 +312,10 @@ function buildSpecialTriggers(){
     { id: 'starfield-2',  fn: buildStarfield },
     { id: 'earring-stage',fn: animateEarring },
     { id: 'call-timer',   fn: animateCallTimer },
-    { id: 'petals',       fn: buildPetals }
+    { id: 'petals',       fn: buildPetals },
+    { id: 'bokeh-field',  fn: buildBokeh },
+    { id: 'mote-field',   fn: buildMotes },
+    { id: 'ladoo-field',  fn: buildLadoos }
   ];
   byId.forEach(({ id, fn }) => {
     const el = document.getElementById(id);
@@ -399,6 +402,65 @@ function buildStarfield(){
       field.appendChild(s);
     }
   });
+}
+
+function buildBokeh(){
+  const field = document.getElementById('bokeh-field');
+  if(!field || field.dataset.done) return;
+  field.dataset.done = '1';
+  const colors = ['rgba(200,140,255,.55)','rgba(255,180,80,.45)','rgba(100,160,255,.4)','rgba(255,120,160,.4)','rgba(180,255,200,.35)'];
+  for(let i = 0; i < 22; i++){
+    const s = document.createElement('span');
+    const size = 30 + Math.random() * 90;
+    s.style.cssText = `
+      left:${Math.random()*100}%;
+      bottom:${-10 + Math.random()*30}%;
+      width:${size}px; height:${size}px;
+      background:${colors[i % colors.length]};
+      animation-duration:${6 + Math.random()*10}s;
+      animation-delay:${Math.random()*8}s;
+    `;
+    field.appendChild(s);
+  }
+}
+
+function buildMotes(){
+  const field = document.getElementById('mote-field');
+  if(!field || field.dataset.done) return;
+  field.dataset.done = '1';
+  for(let i = 0; i < 35; i++){
+    const s = document.createElement('span');
+    const size = 2 + Math.random() * 4;
+    s.style.cssText = `
+      left:${Math.random()*100}%;
+      bottom:${Math.random()*30}%;
+      width:${size}px; height:${size}px;
+      animation-duration:${4 + Math.random()*7}s;
+      animation-delay:${Math.random()*6}s;
+    `;
+    field.appendChild(s);
+  }
+}
+
+function buildLadoos(){
+  const field = document.getElementById('ladoo-field');
+  if(!field || field.dataset.done) return;
+  field.dataset.done = '1';
+  for(let i = 0; i < 18; i++){
+    const s = document.createElement('span');
+    const size = 16 + Math.random() * 36;
+    const dx  = (Math.random() - 0.5) * 60;
+    const dx2 = (Math.random() - 0.5) * 60;
+    s.style.cssText = `
+      left:${5 + Math.random()*90}%;
+      bottom:${-5 + Math.random()*20}%;
+      width:${size}px; height:${size}px;
+      --dx:${dx}px; --dx2:${dx2}px;
+      animation-duration:${7 + Math.random()*9}s;
+      animation-delay:${Math.random()*7}s;
+    `;
+    field.appendChild(s);
+  }
 }
 
 function animateEarring(){
