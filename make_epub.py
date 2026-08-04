@@ -452,6 +452,30 @@ chapters = [
         "Some days that is the closest I can get to actually being near you.",
         "A few seconds of watching you smile at something is enough to get through the day.",
     ], "ch23")),
+    ("ch24",     "24 · Two Weeks of Delulu",      chapter("24", "Two Weeks of Delulu", [
+        "For two whole weeks, I was living inside a dream I had built entirely by myself.",
+        "A Mumbai halt. Thirty minutes. That&#8217;s all I needed. I spent days convincing myself it was possible &#8212; checked online, read every thread, calculated every minute like a case study.",
+        "I wore my black outfit. Your favourite one. Crazy black jeans, black shirt, the whole thing. I made sure I looked like someone worth waiting half a day for.",
+        "I remember standing there at that gate, thinking &#8212; any minute now, a princess is going to walk through that door.",
+        "My eyes were already looking for you before I even landed.",
+    ], "ch24")),
+    ("ch25",     "25 · IndiGo Broke Me",          chapter("25", "IndiGo Broke Me", [
+        "I landed thirty minutes early. Thirty whole minutes ahead of schedule &#8212; which honestly felt like a sign.",
+        "The first thing I did was text you. &#8220;I&#8217;ve landed.&#8221;",
+        "I tried everything. Asked every person I could find to just let me step out for ten minutes. That&#8217;s it. Ten minutes.",
+        "IndiGo said no.",
+        "And just like that, two weeks of hoping dried up in about thirty seconds. I went stunned. Couldn&#8217;t process it. All those plans, that outfit, those eyes &#8212; all of it, waiting for someone who was already waiting on the other side.",
+        "You had taken half a day off. You had dressed like an absolute princess on that video call. And I was standing there, on the wrong side of a gate, not sure I even deserved to pick up the phone.",
+        "I&#8217;m sorry for that one. I really am.",
+    ], "ch25")),
+    ("ch26",     "26 · God Was Just Making Us More Curious", chapter("26", "God Was Just Making Us More Curious", [
+        "I think I understand it now. Or at least I&#8217;m telling myself I do.",
+        "God has a habit of doing the exact opposite of what you&#8217;re hoping for &#8212; especially when it&#8217;s something that actually matters.",
+        "Maybe that IndiGo gate existed for a reason. Maybe we weren&#8217;t quite ready for that moment yet. Maybe the universe decided our first real meeting deserved more than a ten-minute window at an airport terminal.",
+        "So instead of giving us the hug, it made us wait. Made us more thirsty for it. Added a few more months of longing to the tab.",
+        "And honestly? The next time I come, we&#8217;re going to want that one hug more than we&#8217;ve ever wanted anything.",
+        "God is just keeping the interest running. &#x1F423;&#x1F33B;",
+    ], "ch26")),
     ("ending",   "After The Last Page",          xhtml("After The Last Page", ENDING_BODY, "ending")),
 ]
 
