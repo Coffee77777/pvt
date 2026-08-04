@@ -476,14 +476,24 @@ chapters = [
         "And honestly? The next time I come, we&#8217;re going to want that one hug more than we&#8217;ve ever wanted anything.",
         "God is just keeping the interest running. &#x1F423;&#x1F33B;",
     ], "ch26")),
-    ("ch27",     "27 · Your Voice is My Alarm",  chapter("27", "Your Voice is My Alarm", [
+    ("ch27",     "27 · Drunk Calls & Silent Sleeps", chapter("27", "Drunk Calls &amp; Silent Sleeps", [
+        "1st August. You went to a party.",
+        "I saw the pictures.",
+        "My eyes &#8212; I don&#8217;t know how else to say this &#8212; were shining. You were wearing that outfit, being that version of yourself that makes people stop and look twice, and I sat there quietly wishing I was the one taking care of you that night.",
+        "You came back home after one of the best nights you&#8217;d had in a while. Drunk. Happy. Glowing. And somehow, even in that state, you called me. We talked. Really talked. The kind of conversation that only happens when your guard is fully down and you&#8217;re just being yourself with nowhere to be and nothing to perform. I loved every minute of it.",
+        "And then, somewhere between the talking and the silence, you asked me to stay on call while you slept.",
+        "It reminded me of Bangalore. Right after Mumbai. I was the one who was drunk that time, falling asleep with my phone in my hand &#8212; and it was just silence. Just our breathing, quietly existing in each other&#8217;s ears. No words needed. No plans. Just the sound of someone being alive on the other end.",
+        "Those are the sleeps I love most. The ones we share virtually, with nothing between us except a call that neither of us hangs up.",
+        "In those moments, you feel like you&#8217;re right next to me. And for a few hours, that&#8217;s more than enough.",
+    ], "ch27")),
+    ("ch28",     "28 · Your Voice is My Alarm",  chapter("27", "Your Voice is My Alarm", [
         "There is a specific version of your voice &#8212; the one right after you wake up &#8212; that I have decided is my favourite sound in the world. Half asleep, slightly hoarse, still figuring out where you are. I wake up to it every morning and I genuinely don&#8217;t think I could start my day properly without it.",
         "But there is a flip side nobody talks about.",
         "The days you&#8217;re already up before I call &#8212; those hit differently. Today, 4th August 2026, you gave me a call with a voice that was too fresh, too awake, too already-started-your-day. And I sat there genuinely jealous, wondering who got to be your alarm this morning. Because that job is supposed to be mine.",
         "The day before yesterday we couldn&#8217;t talk at all. I stretched my eyes watching YouTube until they gave up on me. Sleep didn&#8217;t feel like rest. It just felt like the absence of you.",
         "I want to be your alarm. And your sleeping therapy. Both. Daily. Non-negotiable.",
     ], "ch27")),
-    ("ch28",     "28 · The Ladoo Surprise",      chapter("28", "The Ladoo Surprise", [
+    ("ch29",     "29 · The Ladoo Surprise",      chapter("28", "The Ladoo Surprise", [
         "Today, 4th August 2026. 12pm.",
         "I drove 2 kilometres to a shop called Sonalben Khakhrawala. I had a picture on my phone &#8212; khajoor gaund ladoo, exactly the kind you&#8217;d been craving &#8212; and I walked up and asked, &#8220;Is this available?&#8221;",
         "They said yes. Why not.",
