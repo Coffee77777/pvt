@@ -103,16 +103,8 @@ function initPasswordScreen(){
     if(hash === PW_HASH){
       screen.classList.add('unlocking');
       setTimeout(() => { screen.style.display = 'none'; }, 950);
-      // notify Jay the moment she opens the book
-      fetch('https://ntfy.sh/coffee_7', {
-        method: 'POST',
-        headers: {
-          'Title': '🌻 She opened the book',
-          'Priority': 'high',
-          'Tags': 'sunflower,heart'
-        },
-        body: `Opened at ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })} IST`
-      }).catch(() => {}); // silent — never interrupt the experience
+      // notify Jay — proxied through same domain so iOS Safari never blocks it
+      fetch('/api/notify').catch(() => {});
     } else {
       screen.classList.remove('shake');
       void screen.offsetWidth;
