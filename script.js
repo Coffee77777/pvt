@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initCursor();
   initLoader();
   bindTopbarControls();
-  initWaxSeal();
   initSecretPage();
   initEasterEgg();
 });
@@ -679,42 +678,6 @@ function stopAmbient(){
     }, 1400);
   }
   ambientPlaying = false;
-}
-
-/* ══════════════════════════════════════════════════════
-   FEATURE 2 — WAX SEAL on opening letter
-══════════════════════════════════════════════════════ */
-function initWaxSeal(){
-  const seal    = document.getElementById('wax-seal');
-  const content = document.getElementById('letter-content');
-  if(!seal || !content) return;
-
-  function breakSeal(){
-    if(seal.dataset.broken) return;
-    seal.dataset.broken = '1';
-    seal.classList.add('cracking');
-    // subtle crack sound via Web Audio
-    try{
-      const ctx = new (window.AudioContext || window.webkitAudioContext)();
-      const buf = ctx.createBuffer(1, ctx.sampleRate * .18, ctx.sampleRate);
-      const d   = buf.getChannelData(0);
-      for(let i = 0; i < d.length; i++) d[i] = (Math.random()*2-1) * Math.pow(1 - i/d.length, 3);
-      const src = ctx.createBufferSource();
-      src.buffer = buf;
-      const bpf = ctx.createBiquadFilter();
-      bpf.type = 'bandpass'; bpf.frequency.value = 1800; bpf.Q.value = .8;
-      src.connect(bpf); bpf.connect(ctx.destination);
-      src.start();
-      setTimeout(() => ctx.close(), 500);
-    }catch(e){}
-    setTimeout(() => {
-      seal.style.display = 'none';
-      content.classList.add('revealed');
-    }, 700);
-  }
-
-  seal.addEventListener('click',       breakSeal);
-  seal.addEventListener('touchend', e => { e.preventDefault(); breakSeal(); });
 }
 
 /* ══════════════════════════════════════════════════════

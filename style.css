@@ -711,33 +711,6 @@ body::before{
   100%{ transform:translateY(-95vh) translateX(var(--dx2,-8px)) scale(.9); opacity:0; }
 }
 
-/* ── Feature 2: Wax Seal ── */
-.letter-content{ opacity:0; transform:translateY(12px); transition:opacity .7s ease, transform .7s ease; pointer-events:none; }
-.letter-content.revealed{ opacity:1; transform:translateY(0); pointer-events:auto; }
-
-.wax-seal{
-  position:absolute; top:-28px; left:50%; transform:translateX(-50%);
-  width:80px; height:80px; cursor:pointer; z-index:10;
-  filter:drop-shadow(0 4px 12px rgba(180,30,30,.35));
-  transition:transform .2s ease, filter .2s ease;
-}
-.wax-seal:hover{ transform:translateX(-50%) scale(1.08); filter:drop-shadow(0 6px 18px rgba(180,30,30,.5)); }
-.wax-seal-svg{ width:100%; height:100%; }
-.wax-hint{
-  text-align:center; font-size:9px; letter-spacing:.12em; text-transform:uppercase;
-  color:#a93226; margin-top:4px; font-family:var(--ui); opacity:.75;
-}
-.wax-crack{ position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; }
-
-@keyframes sealCrack{
-  0%  { opacity:0; transform:translateX(-50%) scale(1) rotate(0deg); }
-  20% { opacity:1; transform:translateX(-50%) scale(1.12) rotate(-4deg); }
-  50% { transform:translateX(-50%) scale(.95) rotate(6deg); }
-  80% { opacity:.6; transform:translateX(-50%) scale(1.1) rotate(-2deg); }
-  100%{ opacity:0; transform:translateX(-50%) scale(1.3) rotate(8deg); }
-}
-.wax-seal.cracking{ animation:sealCrack .75s var(--ease) forwards; }
-
 /* ── Feature 3: Secret Page ── */
 .secret-page{
   background: radial-gradient(ellipse at 50% 40%, #1a1025 0%, #0d0b18 100%);
