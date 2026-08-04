@@ -740,6 +740,15 @@ body::before{
 }
 .countdown-lbl{ font-size:.6em; letter-spacing:.18em; text-transform:uppercase; color:#b89a5a; font-family:var(--ui); }
 
+/* story image */
+.secret-story-img{
+  width: min(340px, 85vw);
+  border-radius: 16px;
+  box-shadow: 0 8px 40px rgba(0,0,0,.6);
+  margin: 0 auto 2rem;
+  display: block;
+}
+
 /* revealed mode */
 .secret-revealed-badge{
   font-size:.6em; letter-spacing:.25em; text-transform:uppercase;
