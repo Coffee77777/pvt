@@ -103,6 +103,17 @@ function initPasswordScreen(){
     if(hash === PW_HASH){
       screen.classList.add('unlocking');
       setTimeout(() => { screen.style.display = 'none'; }, 950);
+      // notify Jay the moment she opens the book
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: '0c09c1c4-271f-496f-b6c8-40386120a02b',
+          subject: '🌻 She opened the book',
+          message: `The book was opened on ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })} IST`,
+          from_name: 'sukareche.vercel.app'
+        })
+      }).catch(() => {}); // silent fail — never interrupt the experience
     } else {
       screen.classList.remove('shake');
       void screen.offsetWidth;
