@@ -14,6 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initCursor();
   initLoader();
   bindTopbarControls();
+  initWaxSeal();
+  initSecretPage();
+  initEasterEgg();
 });
 
 /* ---------------- cursor ---------------- */
@@ -264,6 +267,7 @@ function buildChapterNav(){
 function setActiveDot(i, id){
   document.querySelectorAll('.chapter-dots .dot').forEach((d, idx) => d.classList.toggle('active', idx === i));
   currentBookmarkPage = id;
+  setMusicMood(id);
 }
 
 function buildPageReveals(){
@@ -675,6 +679,138 @@ function stopAmbient(){
     }, 1400);
   }
   ambientPlaying = false;
+}
+
+/* ══════════════════════════════════════════════════════
+   FEATURE 2 — WAX SEAL on opening letter
+══════════════════════════════════════════════════════ */
+function initWaxSeal(){
+  const seal    = document.getElementById('wax-seal');
+  const content = document.getElementById('letter-content');
+  if(!seal || !content) return;
+
+  function breakSeal(){
+    if(seal.dataset.broken) return;
+    seal.dataset.broken = '1';
+    seal.classList.add('cracking');
+    // subtle crack sound via Web Audio
+    try{
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const buf = ctx.createBuffer(1, ctx.sampleRate * .18, ctx.sampleRate);
+      const d   = buf.getChannelData(0);
+      for(let i = 0; i < d.length; i++) d[i] = (Math.random()*2-1) * Math.pow(1 - i/d.length, 3);
+      const src = ctx.createBufferSource();
+      src.buffer = buf;
+      const bpf = ctx.createBiquadFilter();
+      bpf.type = 'bandpass'; bpf.frequency.value = 1800; bpf.Q.value = .8;
+      src.connect(bpf); bpf.connect(ctx.destination);
+      src.start();
+      setTimeout(() => ctx.close(), 500);
+    }catch(e){}
+    setTimeout(() => {
+      seal.style.display = 'none';
+      content.classList.add('revealed');
+    }, 700);
+  }
+
+  seal.addEventListener('click',       breakSeal);
+  seal.addEventListener('touchend', e => { e.preventDefault(); breakSeal(); });
+}
+
+/* ══════════════════════════════════════════════════════
+   FEATURE 3 — TIME-LOCKED SECRET PAGE (unlocks 27 Aug 2026)
+══════════════════════════════════════════════════════ */
+function initSecretPage(){
+  const inner = document.getElementById('secret-inner');
+  if(!inner) return;
+
+  const UNLOCK = new Date('2026-08-27T00:00:00');
+
+  function render(){
+    const now  = new Date();
+    const diff = UNLOCK - now;
+
+    if(diff <= 0){
+      // REVEALED
+      inner.innerHTML = `
+        <span class="secret-revealed-badge">✦ unlocked ✦</span>
+        <h2 class="secret-revealed-title">Happy Birthday, My Favourite Person.</h2>
+        <p class="secret-revealed-text">I hid this page inside the book weeks ago, knowing exactly what day you'd find it.</p>
+        <p class="secret-revealed-text">I don't have big words for today. Just this — I'm so glad you exist. I'm so glad I know you. And I'm so glad you're the kind of person who reads a book made entirely for her and finds a secret page at the very end.</p>
+        <p class="secret-revealed-text">Happy birthday. 🎂</p>
+        <p class="secret-revealed-text">Whatever this year brings, I hope it brings you more of the things that make you laugh until your stomach hurts.</p>
+        <p class="secret-revealed-emoji">🐣🌻❤️</p>`;
+    } else {
+      // COUNTDOWN
+      const days  = Math.floor(diff / 864e5);
+      const hrs   = Math.floor((diff % 864e5) / 36e5);
+      const mins  = Math.floor((diff % 36e5)  / 6e4);
+      const secs  = Math.floor((diff % 6e4)   / 1e3);
+      inner.innerHTML = `
+        <p class="secret-countdown-label">✦ something is waiting ✦</p>
+        <h2 class="secret-countdown-title">This page unlocks<br>on 27th August.</h2>
+        <p class="secret-countdown-sub">Come back then. You'll know why.</p>
+        <div class="countdown-digits">
+          <div class="countdown-unit"><span class="countdown-num">${String(days).padStart(2,'0')}</span><span class="countdown-lbl">days</span></div>
+          <div class="countdown-unit"><span class="countdown-num">${String(hrs).padStart(2,'0')}</span><span class="countdown-lbl">hrs</span></div>
+          <div class="countdown-unit"><span class="countdown-num">${String(mins).padStart(2,'0')}</span><span class="countdown-lbl">min</span></div>
+          <div class="countdown-unit"><span class="countdown-num">${String(secs).padStart(2,'0')}</span><span class="countdown-lbl">sec</span></div>
+        </div>`;
+      setTimeout(render, 1000);
+    }
+  }
+  render();
+}
+
+/* ══════════════════════════════════════════════════════
+   FEATURE 4 — EASTER EGG: tap sunflower 5× on loader
+══════════════════════════════════════════════════════ */
+function initEasterEgg(){
+  const stage   = document.getElementById('sunflower-stage');
+  const overlay = document.getElementById('egg-overlay');
+  const closeBtn= document.getElementById('egg-close');
+  if(!stage || !overlay) return;
+
+  let taps = 0, lastTap = 0;
+  function handleTap(){
+    const now = Date.now();
+    if(now - lastTap > 2000) taps = 0; // reset if too slow
+    lastTap = now;
+    taps++;
+    // tiny bounce on each tap
+    gsap.fromTo('#sunflower-svg', { scale:1.15 }, { scale:1, duration:.25, ease:'back.out(2)' });
+    if(taps >= 5){
+      taps = 0;
+      overlay.classList.add('show');
+    }
+  }
+  stage.addEventListener('click',    handleTap);
+  stage.addEventListener('touchend', e => { e.preventDefault(); handleTap(); });
+  closeBtn.addEventListener('click', () => overlay.classList.remove('show'));
+}
+
+/* ══════════════════════════════════════════════════════
+   FEATURE 5 — MOOD-ADAPTIVE MUSIC
+   Called from ScrollTrigger page detection after book begins
+══════════════════════════════════════════════════════ */
+const MOOD_MAP = {
+  // dark / emotional pages → minor, softer
+  'page-8':  'soft', 'page-10': 'soft', 'page-25': 'soft',
+  'page-30': 'soft', 'page-31': 'soft', 'page-12': 'soft',
+  // warm / happy pages → brighter
+  'page-2':  'warm', 'page-5':  'warm', 'page-17': 'warm',
+  'page-18': 'warm', 'page-29': 'warm', 'page-27': 'warm',
+  'page-20': 'warm', 'page-15': 'warm',
+};
+let currentMood = 'neutral';
+
+function setMusicMood(pageId){
+  if(!ambientPlaying || !ambientMaster || !ambientCtx) return;
+  const mood = MOOD_MAP[pageId] || 'neutral';
+  if(mood === currentMood) return;
+  currentMood = mood;
+  const target = mood === 'soft' ? 0.08 : mood === 'warm' ? 0.22 : 0.16;
+  ambientMaster.gain.linearRampToValueAtTime(target, ambientCtx.currentTime + 2.5);
 }
 
 function toast(msg){
