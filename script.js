@@ -327,6 +327,11 @@ function buildSpecialTriggers(){
     { id: 'earring-stage',fn: animateEarring },
     { id: 'call-timer',   fn: animateCallTimer },
     { id: 'petals',       fn: buildPetals },
+    { id: 'city-bokeh',   fn: buildCityBokeh },
+    { id: 'dawn-rays',    fn: buildDawnRays },
+    { id: 'candle-field', fn: buildCandleField },
+    { id: 'ping-rings',   fn: buildPingRings },
+    { id: 'petal-fall',   fn: buildPetalFall },
     { id: 'bokeh-field',  fn: buildBokeh },
     { id: 'mote-field',   fn: buildMotes },
     { id: 'ladoo-field',  fn: buildLadoos }
@@ -416,6 +421,67 @@ function buildStarfield(){
       field.appendChild(s);
     }
   });
+}
+
+function buildCityBokeh(){
+  const field = document.getElementById('city-bokeh');
+  if(!field || field.dataset.done) return;
+  field.dataset.done = '1';
+  const colors = ['rgba(255,200,80,.5)','rgba(255,140,60,.4)','rgba(180,220,255,.35)','rgba(255,255,180,.4)','rgba(200,180,255,.35)'];
+  for(let i = 0; i < 28; i++){
+    const s = document.createElement('span');
+    const sz = 20 + Math.random()*70;
+    s.style.cssText = `left:${Math.random()*100}%;bottom:${Math.random()*60}%;width:${sz}px;height:${sz}px;background:${colors[i%colors.length]};animation-duration:${8+Math.random()*12}s;animation-delay:${Math.random()*10}s;`;
+    field.appendChild(s);
+  }
+}
+
+function buildDawnRays(){
+  const field = document.getElementById('dawn-rays');
+  if(!field || field.dataset.done) return;
+  field.dataset.done = '1';
+  for(let i = 0; i < 18; i++){
+    const s = document.createElement('span');
+    const h = 30 + Math.random()*55;
+    const angle = -90 + (i/17)*180;
+    s.style.cssText = `height:${h}%;transform:rotate(${angle}deg);opacity:${.15+Math.random()*.3};animation:fightGlow ${3+Math.random()*4}s ease-in-out infinite alternate;animation-delay:${Math.random()*3}s;`;
+    field.appendChild(s);
+  }
+}
+
+function buildCandleField(){
+  const field = document.getElementById('candle-field');
+  if(!field || field.dataset.done) return;
+  field.dataset.done = '1';
+  for(let i = 0; i < 14; i++){
+    const s = document.createElement('span');
+    const sz = 18 + Math.random()*45;
+    s.style.cssText = `left:${5+Math.random()*90}%;bottom:${Math.random()*40}%;width:${sz}px;height:${sz*1.4}px;animation-duration:${1.2+Math.random()*1.8}s;animation-delay:${Math.random()*2}s;`;
+    field.appendChild(s);
+  }
+}
+
+function buildPingRings(){
+  const field = document.getElementById('ping-rings');
+  if(!field || field.dataset.done) return;
+  field.dataset.done = '1';
+  for(let i = 0; i < 3; i++){
+    const s = document.createElement('span');
+    field.appendChild(s);
+  }
+}
+
+function buildPetalFall(){
+  const field = document.getElementById('petal-fall');
+  if(!field || field.dataset.done) return;
+  field.dataset.done = '1';
+  const petals = ['🌸','🌺','✿','❀','🌷'];
+  for(let i = 0; i < 20; i++){
+    const s = document.createElement('span');
+    s.textContent = petals[i%petals.length];
+    s.style.cssText = `left:${Math.random()*100}%;animation-duration:${6+Math.random()*8}s;animation-delay:${Math.random()*8}s;font-size:${10+Math.random()*14}px;`;
+    field.appendChild(s);
+  }
 }
 
 function buildBokeh(){
